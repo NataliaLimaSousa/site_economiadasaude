@@ -1,0 +1,1122 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPECS - Grupo de Pesquisa em Economia da Saúde</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primary: #4BACBD;
+            --color-secondary: #70BECC;
+            --color-accent-light: #B7C29E;
+            --color-accent-dark: #719999;
+            --color-bg-light: #F5F5F5;
+            --color-white: #FFFFFF;
+            --color-dark: #1a1a1a;
+            --color-text: #333333;
+            --color-text-light: #666666;
+        }
+
+        body.dark-mode {
+            --color-white: #1a1a1a;
+            --color-dark: #EAEDED;
+            --color-text: #EAEDED;
+            --color-text-light: #b0b0b0;
+            --color-bg-light: #2a2a2a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--color-text);
+            background-color: var(--color-white);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            flex-wrap: wrap;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            height: 50px;
+            width: auto;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .theme-toggle {
+            background: var(--color-white);
+            border: 2px solid var(--color-text);
+            color: var(--color-text);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .theme-toggle:hover {
+            background: var(--color-text);
+            color: var(--color-white);
+            transform: scale(1.05);
+        }
+
+        /* Header Navigation */
+        .header-nav {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            flex: 1;
+            margin: 0 1rem;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid var(--color-white);
+            color: var(--color-white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-btn:hover {
+            background: var(--color-white);
+            color: var(--color-primary);
+            transform: translateY(-2px);
+        }
+
+        body.dark-mode .nav-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #ccc;
+            color: #eee;
+        }
+
+        body.dark-mode .nav-btn:hover {
+            background: #333;
+            color: var(--color-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            color: var(--color-white);
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero-logo {
+            height: 120px;
+            width: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 2rem;
+            border: 4px solid var(--color-white);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            margin: 0.5rem;
+            border: 2px solid var(--color-white);
+            background: transparent;
+            color: var(--color-white);
+            text-decoration: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: var(--color-white);
+            color: var(--color-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background: var(--color-accent-light);
+            color: var(--color-dark);
+            border-color: var(--color-accent-light);
+        }
+
+        .btn-primary:hover {
+            background: var(--color-white);
+            border-color: var(--color-white);
+            color: var(--color-primary);
+        }
+
+        /* Seções Gerais */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--color-primary);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .section-title::before {
+            content: '|';
+            position: absolute;
+            left: 0;
+            color: var(--color-secondary);
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        /* Nossa História */
+        #nossa-historia {
+            background-color: var(--color-bg-light);
+        }
+
+        .history-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-text);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Coordenadores */
+        #coordenadores {
+            background-color: var(--color-white);
+        }
+
+        .coordinators-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .coordinator-card {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            background: var(--color-bg-light);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .coordinator-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .coordinator-image {
+            height: 150px;
+            width: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+            border: 4px solid var(--color-primary);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .coordinator-info h3 {
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .coordinator-info p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--color-text-light);
+        }
+
+        /* Objetivo */
+        #objetivo {
+            background-color: transparent;
+        }
+
+        .objective-box {
+            background: linear-gradient(135deg, var(--color-accent-light) 0%, var(--color-accent-dark) 100%);
+            padding: 2.5rem;
+            border-radius: 15px;
+            font-size: 1.3rem;
+            color: var(--color-white);
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            margin-top: 2rem;
+            border-left: 5px solid var(--color-primary);
+        }
+
+        /* Eixos Temáticos */
+        #eixos {
+            background-color: var(--color-white);
+        }
+
+        .eixos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .eixo-card {
+            background: var(--color-bg-light);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-top: 4px solid var(--color-primary);
+        }
+
+        .eixo-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            border-top-color: var(--color-secondary);
+        }
+
+        .eixo-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .eixo-card h3 {
+            color: var(--color-primary);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Encontros */
+        #encontros {
+            background-color: transparent;
+        }
+
+        .encontros-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .calendar {
+            background: var(--color-white);
+            padding: 1rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .calendar-header {
+            font-size: 0.95rem;
+            font-weight: bold;
+            margin-bottom: 0.8rem;
+            color: var(--color-primary);
+        }
+
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .day-header {
+            text-align: center;
+            font-weight: bold;
+            color: var(--color-secondary);
+            padding: 0.3rem;
+            font-size: 0.7rem;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.7rem;
+        }
+
+        .calendar-day.active {
+            background: var(--color-primary);
+            color: var(--color-white);
+            font-weight: bold;
+        }
+
+        .encontros-info {
+            background: var(--color-white);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-item {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: var(--color-primary);
+            font-size: 1rem;
+        }
+
+        .info-content {
+            color: var(--color-text-light);
+            margin-top: 0.3rem;
+            font-size: 0.95rem;
+        }
+
+        /* Oportunidades */
+        #oportunidades {
+            background-color: var(--color-white);
+        }
+
+        .opportunities-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .opportunities-list li {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: var(--color-bg-light);
+            border-radius: 8px;
+            font-size: 1.1rem;
+            border-left: 4px solid var(--color-primary);
+            transition: all 0.3s ease;
+        }
+
+        .opportunities-list li:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .opportunities-list li::before {
+            content: '✔️ ';
+            margin-right: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        /* Livros e Artigos */
+        #publicacoes {
+            background-color: transparent;
+        }
+
+        .publicacoes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .publication-card {
+            background: var(--color-white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .publication-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .publication-cover {
+            height: 300px;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            padding: 1rem;
+            font-size: 1.1rem;
+            overflow: hidden;
+        }
+
+        .publication-info {
+            padding: 1.5rem;
+        }
+
+        .publication-info h3 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            min-height: 3em;
+        }
+
+        .publication-link {
+            display: inline-block;
+            color: var(--color-secondary);
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .publication-link:hover {
+            color: var(--color-primary);
+            text-decoration: underline;
+        }
+
+        /* Logomarcas */
+        #logomarcas {
+            background-color: var(--color-white);
+        }
+
+        .logos-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .logo-item {
+            height: 90px;
+            width: auto;
+            transition: all 0.3s ease;
+        }
+
+        .logo-item:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+        }
+
+        .logo-item.logomarca {
+            background: transparent;
+        }
+
+        /* Contato */
+        #contato {
+            background-color: var(--color-bg-light);
+            border-radius: 15px;
+            margin: 3rem auto;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: var(--color-white);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+        }
+
+        .contact-card-img {
+            height: 60px;
+            width: 60px;
+            margin: 0 auto 1rem;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-link {
+            display: inline-block;
+            color: var(--color-secondary);
+            text-decoration: none;
+            font-weight: bold;
+            word-break: break-all;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--color-primary);
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--color-accent-dark) 0%, var(--color-primary) 100%);
+            color: var(--color-white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        /* Responsività */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .header-nav {
+                flex-basis: 100%;
+                gap: 0.3rem;
+            }
+
+            .nav-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.75rem;
+            }
+
+            .hero {
+                min-height: 500px;
+                padding: 2rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-logo {
+                height: 100px;
+                width: 100px;
+            }
+
+            section {
+                padding: 2rem 1rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .coordinator-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .coordinator-image {
+                margin: 0 auto;
+            }
+
+            .encontros-container {
+                grid-template-columns: 1fr;
+            }
+
+            .eixos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .logos-container {
+                gap: 1.5rem;
+            }
+
+            .logo-item {
+                height: 80px;
+            }
+
+            .btn {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-nav {
+                flex-basis: 100%;
+            }
+
+            .nav-btn {
+                padding: 0.3rem 0.6rem;
+                font-size: 0.7rem;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero p {
+                font-size: 0.95rem;
+            }
+
+            .btn {
+                display: block;
+                width: 90%;
+                margin: 0.5rem auto;
+            }
+
+            .history-text {
+                font-size: 1rem;
+            }
+
+            .eixo-card h3 {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* Scroll Smooth */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <img src="images/Logomarca.jpeg" alt="GPECS Logo" class="logo">
+        </div>
+        <nav class="header-nav">
+            <a href="#nossa-historia" class="nav-btn">História</a>
+            <a href="#coordenadores" class="nav-btn">Coordenadores</a>
+            <a href="#objetivo" class="nav-btn">Objetivo</a>
+            <a href="#eixos" class="nav-btn">Eixos</a>
+            <a href="#encontros" class="nav-btn">Encontros</a>
+            <a href="#publicacoes" class="nav-btn">Publicações</a>
+            <a href="#contato" class="nav-btn">Contato</a>
+        </nav>
+        <button class="theme-toggle" id="themeToggle">🌙 Modo Escuro</button>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <img src="images/Logomarca.jpeg" alt="Logomarca GPECS" class="hero-logo">
+            <h1>Grupo de Pesquisa em Economia da Saúde</h1>
+            <p>Desde 1999 promovendo Estudos, Pesquisas e Atuações em Economia da Saúde</p>
+            <a href="#nossa-historia" class="btn btn-primary">Nossa História</a>
+        </div>
+    </section>
+
+    <!-- Nossa História -->
+    <section id="nossa-historia">
+        <h2 class="section-title">Nossa História</h2>
+        <div class="history-text">
+            <p>O GPECS é o Grupo de Pesquisa em Economia da Saúde e um espaço acadêmico vinculado ao Programa de Pós-Graduação em Saúde Coletiva da UECE (PPSAC/UECE), dedicado ao desenvolvimento de estudos que integram economia, gestão e avaliação em saúde no contexto do SUS.</p>
+            <br>
+            <p>Desde 1999, atuamos na produção de conhecimento científico voltado à otimização de recursos, tomada de decisão e fortalecimento de políticas públicas de saúde, por meio de uma abordagem interdisciplinar.</p>
+        </div>
+    </section>
+
+    <!-- Coordenadores -->
+    <section id="coordenadores">
+        <h2 class="section-title">Coordenadores</h2>
+        <div class="coordinators-container">
+            <div class="coordinator-card">
+                <img src="images/Marcelo Gurgel.jpeg" alt="Marcelo Gurgel Carlos da Silva" class="coordinator-image">
+                <div class="coordinator-info">
+                    <h3>Marcelo Gurgel Carlos da Silva</h3>
+                    <p>Médico e economista formado pela Universidade Federal do Ceará, com especialização, mestrado e doutorado em Saúde Pública pela USP e pós-doutorado em Economia da Saúde pela Universidade de Barcelona. É professor titular da UECE, atuando no curso de Medicina e na pós-graduação em Saúde Coletiva, além de médico-epidemiologista do Instituto do Câncer do Ceará, onde coordena o Comitê de Ética em Pesquisa.</p>
+                    <p>Especialista em Medicina Sanitária e do Trabalho, tem experiência em Saúde Coletiva, com foco em Epidemiologia e Economia da Saúde. Participa de diversas associações científicas e academias médicas e literárias, presidindo atualmente a Academia Cearense de Saúde Pública.</p>
+                    <p>Autor prolífico, publicou mais de 120 livros, com atuação em diversos gêneros literários, como biografia, crônica, conto, ensaio, romance e teatro.</p>
+                </div>
+            </div>
+
+            <div class="coordinator-card">
+                <img src="images/André Lima.jpeg" alt="André Lima Sousa" class="coordinator-image">
+                <div class="coordinator-info">
+                    <h3>André Lima Sousa</h3>
+                    <p>Professor de Economia Política do curso de Ciências Sociais e do mestrado profissional em Gestão da Saúde na Universidade Estadual do Ceará. É bacharel em Ciências Econômicas pela UFC, mestre em Desenvolvimento Regional e Urbano pelo PPGG-UFSC e doutor em Geografia Humana pelo IESA/UFG.</p>
+                    <p>Coordena o Programa Extensão Mundo Quandu e o Laboratório de Pesquisas e Práticas do Espaço Transitório - LAPPET/UECE. Tem experiência nas áreas de Economia, Geografia e Sociologia, com interesse especial pelos seguintes temas: História do Pensamento Econômico; Economia Brasileira; Economia da Saúde; Economia Solidária; Estado e Políticas Públicas; Desenvolvimento Regional e Urbano; Conflitos Territoriais; Espaço de Transição, Agroecologia, Ecossocialismo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Objetivo -->
+    <section id="objetivo">
+        <h2 class="section-title">Nosso Objetivo</h2>
+        <div class="objective-box">
+            🎯 Integrar pesquisadores e estudantes na construção de evidências que contribuam para decisões mais eficientes, equitativas e sustentáveis em saúde.
+        </div>
+    </section>
+
+    <!-- Eixos Temáticos -->
+    <section id="eixos">
+        <h2 class="section-title">Eixos Temáticos de Pesquisa em Economia da Saúde</h2>
+        <div class="eixos-grid">
+            <div class="eixo-card">
+                <div class="eixo-icon">📋</div>
+                <h3>Diretrizes para Estudos de Avaliação Econômica</h3>
+            </div>
+            <div class="eixo-card">
+                <div class="eixo-icon">💰</div>
+                <h3>Gastos em Saúde</h3>
+            </div>
+            <div class="eixo-card">
+                <div class="eixo-icon">💳</div>
+                <h3>Financiamento em Saúde</h3>
+            </div>
+            <div class="eixo-card">
+                <div class="eixo-icon">⚙️</div>
+                <h3>Avaliação de Tecnologias em Saúde (ATS)</h3>
+            </div>
+            <div class="eixo-card">
+                <div class="eixo-icon">⚖️</div>
+                <h3>Judicialização em Saúde</h3>
+            </div>
+            <div class="eixo-card">
+                <div class="eixo-icon">📊</div>
+                <h3>Gestão de Custos</h3>
+            </div>
+            <div class="eixo-card">
+                <div class="eixo-icon">🔍</div>
+                <h3>Análise de Custos, Efetividade e Utilidade</h3>
+            </div>
+            <div class="eixo-card">
+                <div class="eixo-icon">🚗</div>
+                <h3>Custos com Acidentes de Trânsito</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Encontros -->
+    <section id="encontros">
+        <h2 class="section-title">Encontros Presenciais do Grupo de Pesquisa</h2>
+        <div class="encontros-container">
+            <div class="calendar">
+                <div class="calendar-header">📅 Calendário</div>
+                <div class="calendar-header" style="font-size: 1rem; font-weight: normal; margin-bottom: 1rem;">Fevereiro 2026</div>
+                <!-- Simplified calendar representation -->
+                <div class="calendar-days">
+                    <div class="day-header">Dom</div>
+                    <div class="day-header">Seg</div>
+                    <div class="day-header">Ter</div>
+                    <div class="day-header">Qua</div>
+                    <div class="day-header">Qui</div>
+                    <div class="day-header">Sex</div>
+                    <div class="day-header">Sáb</div>
+                </div>
+                <div class="calendar-days">
+                    <div class="calendar-day"></div>
+                    <div class="calendar-day"></div>
+                    <div class="calendar-day"></div>
+                    <div class="calendar-day"></div>
+                    <div class="calendar-day"></div>
+                    <div class="calendar-day active">6</div>
+                    <div class="calendar-day">7</div>
+                    <div class="calendar-day">8</div>
+                    <div class="calendar-day">9</div>
+                    <div class="calendar-day">10</div>
+                    <div class="calendar-day">11</div>
+                    <div class="calendar-day">12</div>
+                    <div class="calendar-day">13</div>
+                    <div class="calendar-day active">13</div>
+                    <div class="calendar-day">14</div>
+                    <div class="calendar-day">15</div>
+                    <div class="calendar-day">16</div>
+                    <div class="calendar-day">17</div>
+                    <div class="calendar-day">18</div>
+                    <div class="calendar-day">19</div>
+                    <div class="calendar-day">20</div>
+                    <div class="calendar-day">21</div>
+                    <div class="calendar-day">22</div>
+                    <div class="calendar-day">23</div>
+                    <div class="calendar-day">24</div>
+                    <div class="calendar-day">25</div>
+                    <div class="calendar-day">26</div>
+                    <div class="calendar-day">27</div>
+                    <div class="calendar-day">28</div>
+                </div>
+            </div>
+
+            <div class="encontros-info">
+                <div class="info-item">
+                    <div class="info-label">📅 Encontros</div>
+                    <div class="info-content">Primeira sexta-feira do mês</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">⏰ Horário</div>
+                    <div class="info-content">10:30 às 12h</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">📍 Local</div>
+                    <div class="info-content">Universidade Estadual do Ceará (UECE) no bloco NUPEINSC (Núcleo de Pesquisa e Inovação em Saúde Coletiva)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Oportunidades -->
+    <section id="oportunidades">
+        <h2 class="section-title">No GPECS, você terá a oportunidade de:</h2>
+        <ul class="opportunities-list">
+            <li>Contribuir para pesquisas relevantes em Economia da Saúde</li>
+            <li>Participar de estudos interdisciplinares</li>
+            <li>Ampliar sua formação acadêmica e científica</li>
+            <li>Integrar um grupo vinculado ao PPSAC/UECE</li>
+        </ul>
+    </section>
+
+    <!-- Publicações -->
+    <section id="publicacoes">
+        <h2 class="section-title">Livros e Artigos Publicados</h2>
+        <div class="publicacoes-grid">
+            <a href="#" class="publication-card">
+                <div class="publication-cover">
+                    Livro: Economia da Saúde no Brasil
+                </div>
+                <div class="publication-info">
+                    <h3>Economia da Saúde no Brasil</h3>
+                    <span class="publication-link">Ver mais →</span>
+                </div>
+            </a>
+
+            <a href="#" class="publication-card">
+                <div class="publication-cover">
+                    Artigo: Avaliação Econômica em Saúde
+                </div>
+                <div class="publication-info">
+                    <h3>Avaliação Econômica em Saúde</h3>
+                    <span class="publication-link">Ver mais →</span>
+                </div>
+            </a>
+
+            <a href="#" class="publication-card">
+                <div class="publication-cover">
+                    Livro: Políticas de Saúde e Financiamento
+                </div>
+                <div class="publication-info">
+                    <h3>Políticas de Saúde e Financiamento</h3>
+                    <span class="publication-link">Ver mais →</span>
+                </div>
+            </a>
+
+            <a href="#" class="publication-card">
+                <div class="publication-cover">
+                    Artigo: Custos em Saúde Coletiva
+                </div>
+                <div class="publication-info">
+                    <h3>Custos em Saúde Coletiva</h3>
+                    <span class="publication-link">Ver mais →</span>
+                </div>
+            </a>
+
+            <a href="#" class="publication-card">
+                <div class="publication-cover">
+                    Livro: SUS e Economia da Saúde
+                </div>
+                <div class="publication-info">
+                    <h3>SUS e Economia da Saúde</h3>
+                    <span class="publication-link">Ver mais →</span>
+                </div>
+            </a>
+
+            <a href="#" class="publication-card">
+                <div class="publication-cover">
+                    Artigo: Tecnologias em Saúde
+                </div>
+                <div class="publication-info">
+                    <h3>Avaliação de Tecnologias em Saúde</h3>
+                    <span class="publication-link">Ver mais →</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Logomarcas -->
+    <section id="logomarcas">
+        <h2 class="section-title">Parceiros e Instituições</h2>
+        <div class="logos-container">
+            <img src="images/Brasão.png" alt="Brasão UECE" class="logo-item">
+            <img src="images/PPSAC.png" alt="PPSAC" class="logo-item">
+            <img src="images/Logomarca.jpeg" alt="Logomarca GPECS" class="logo-item logomarca">
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato">
+        <h2 class="section-title">Links e Contatos</h2>
+        <div class="contact-container">
+            <a href="https://www.instagram.com/gpecs_uece?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="contact-card">
+                <img src="images/instagram.png" alt="instagram" class="logo-item">
+                <h3>Siga-nos no Instagram</h3>
+                <span class="contact-link">@gpecs_uece</span>
+            </a>
+
+            <a href="https://forms.gle/H3zG3WQeaXWyutzg9" target="_blank" class="contact-card">
+                <div class="contact-icon">📚</div>
+                <h3>Faça Parte do Grupo</h3>
+                <span class="contact-link">Formulário de Inscrição</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>Endereço:</strong></p>
+        <p>Universidade Estadual do Ceará – UECE</p>
+        <p>Av. Dr. Silas Munguba 1700, Fortaleza, CE</p>
+        <p style="margin-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.3); padding-top: 1rem;">© 2026 GPECS - Grupo de Pesquisa em Economia da Saúde. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Dark Mode Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+
+        // Verificar preferência salva
+        if (localStorage.getItem('theme') === 'dark') {
+            htmlElement.classList.add('dark-mode');
+            themeToggle.textContent = '☀️ Modo Claro';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark-mode');
+            const isDark = htmlElement.classList.contains('dark-mode');
+            themeToggle.textContent = isDark ? '☀️ Modo Claro' : '🌙 Modo Escuro';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+
+        // Smooth scroll behavior (backup)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Reveal animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.eixo-card, .coordinator-card, .publication-card, .contact-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
